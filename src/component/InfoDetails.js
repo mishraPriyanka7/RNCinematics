@@ -159,12 +159,12 @@ import {
                         </Text>
                         <View style={{marginTop:10}}/>
                         <View style={Styles.textStyle}>
-                            <Text style={Styles.textFontStyle}>Relase Date:</Text>
+                            <Text style={Styles.textFontStyle}>Release Date:</Text>
                             <Text style={Styles.textDetailsStyle}>{this.state.ReleaseDate}</Text>
                         </View>
                         
                         <View style={Styles.textStyle}>
-                            <Text style={Styles.textFontStyle}>DVD Relase Date:</Text>
+                            <Text style={Styles.textFontStyle}>DVD Release Date:</Text>
                             <Text style={Styles.textDetailsStyle}>March 13,2018</Text>
                         </View>
 

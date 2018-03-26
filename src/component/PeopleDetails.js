@@ -10,7 +10,8 @@ import {
   } from 'react-native';
   import { connect } from 'react-redux'
   import { bindActionCreators } from 'redux';
-  import fetchPeopleImageData from '../actions/PropleImageAction'
+  import fetchPeopleImageData from '../actions/PeopleDetailsAction'
+  import {fetchPeopleData} from '../actions/PeopleDetailsAction'
   import ViewMoreText from 'react-native-view-more-text';
 
   class PeopleDetails extends Component {
@@ -30,39 +31,23 @@ import {
     }
 
     componentWillMount() {
-         this.props.fetchPeopleImageData()
+         this.props.fetchPeopleImageData(this.props.castIds)
+         this.props.fetchPeopleData(this.props.castIds)
       }
   
       componentWillReceiveProps(nextProps) {
           if (nextProps.PeopleImageData != '' && nextProps.PeopleImageData != undefined) {
-             this.setState({ peopleImageList: nextProps.PeopleImageData.PeopleImageListData.profiles }) // this will update state to re-render ui
-            // alert(JSON.stringify(nextProps.PeopleImageData.PeopleImageListData.profiles));
+             this.setState({ peopleImageList: nextProps.PeopleImageData.PeopleImageListData.profiles })
           }
+          if (nextProps.PeopleDetailData != '' && nextProps.PeopleDetailData != undefined) {
+            this.setState({ overView: nextProps.PeopleDetailData.PeopleDetailListData.biography,
+                            Born: nextProps.PeopleDetailData.PeopleDetailListData.birthday,
+                            BirthPlace: nextProps.PeopleDetailData.PeopleDetailListData.place_of_birth })
+                            //alert("People Details"+JSON.stringify(nextProps.PeopleDetailData.biography))
+         }
          
      }
 
-    componentDidMount() {
-    
-        return fetch('https://api.themoviedb.org/3/person/74568?api_key=1b31282aebdebc34884006adfac40bfb&language=en-US')
-          .then((response) => response.json())
-          .then((responseJson) => {
-            this.setState({
-               
-                overView: responseJson.biography,
-                Born: responseJson.birthday,
-                BirthPlace: responseJson.place_of_birth
-                
-           
-            }, function() {
-              // In this block you can do something with new state.
-            });
-           // alert(JSON.stringify(responseJson.results))
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-    
-      }
         renderViewMore(onPress){
             return(
             <Text onPress={onPress}>View more</Text>
@@ -78,11 +63,8 @@ import {
 
                 
                 <View style={{flex:1}}>
-               
-              
-                    <View style={{margin:10, flex:0.5}}>
-                   <ScrollView>
-
+                     <View style={{margin:10}}>
+                       
                         <View>
                             <ViewMoreText
                                 numberOfLines={3}
@@ -108,16 +90,16 @@ import {
                             <Text style={Styles.textDetailsStyle}>{this.state.BirthPlace}</Text>
                         </View>
 
-                        </ScrollView>
+                       
 
                     </View>
 
                     
-                     <View style={{flex:0.5, backgroundColor:'#E1DBD9', marginTop:10}}>
-                        <View style={{margin:10, marginLeft:10}}>
-                            <Text style={Styles.textStyle}>Images</Text>
+                     <View style={{ backgroundColor:'#E1DBD9', marginTop:10}}>
+                        <View style={{margin:10, marginLeft:30,}}>
+                            <Text style={{fontSize:17}}>Images</Text>
                         </View>
-                        <View style={{}}> 
+                        <View style={{marginBottom:10,marginLeft:15,marginRight:15}}> 
 
                             <FlatList
                                 data={ this.state.peopleImageList }
@@ -130,7 +112,7 @@ import {
                                         <TouchableOpacity activeOpacity = { .5 }>
                                                 <Image 
                                                     source={{uri: "http://image.tmdb.org/t/p/w185"+item.file_path}}
-                                                    style={{width:130, height:170, margin:3}}>
+                                                    style={{width:130, height:180, margin:3}}>
                                                 </Image>
 
                                         </TouchableOpacity>
@@ -170,13 +152,15 @@ const Styles = StyleSheet.create({
 
 
 function mapStateToProps(state) {
+    //alert("** People Details ** "+JSON.stringify(state.PeopleDetails))
     return {
-        PeopleImageData: state.PeopleImageData
+        PeopleImageData: state.PeopleImageData,
+        PeopleDetailData: state.PeopleDetails,
     }
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchPeopleImageData }, dispatch);
+    return bindActionCreators({ fetchPeopleImageData, fetchPeopleData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PeopleDetails);
