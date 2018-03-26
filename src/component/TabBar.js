@@ -17,14 +17,14 @@ export default class TabBarComponent extends Component {
             { key: 'now_playing', title: 'NOW PLAYING' },
             { key: 'top_box_office', title: 'TOP BOX OFFICE' },
             { key: 'anticipated', title: 'ANTICIPATED' },
-            // { key: 'upcoming', title: 'UPCOMING' },
-            // { key: 'trending', title: 'TRENDING' },
-            // { key: 'top_rated', title: 'TOP RATED' },
-            // { key: 'new_dvds', title: 'NEW DVDS' },
-            // { key: 'upcoming_dvds', title: 'UPCOMING DVDS' },
-            // { key: 'top_rental', title: 'TOP RENTAL' },
-            // { key: 'on_netflix', title: 'ON NETFLIX' },
-            // { key: 'imdb_top_250', title: 'IMDB TOP 250' },
+            { key: 'upcoming', title: 'UPCOMING' },
+            { key: 'trending', title: 'TRENDING' },
+            { key: 'top_rated', title: 'TOP RATED' },
+            { key: 'new_dvds', title: 'NEW DVDS' },
+            { key: 'upcoming_dvds', title: 'UPCOMING DVDS' },
+            { key: 'top_rental', title: 'TOP RENTAL' },
+            { key: 'on_netflix', title: 'ON NETFLIX' },
+            { key: 'imdb_top_250', title: 'IMDB TOP 250' },
 
         ],
     };
@@ -61,29 +61,29 @@ export default class TabBarComponent extends Component {
             case 'anticipated': 
             return <MovieList castIds ={"3"}/>;
 
-            // case 'upcoming': 
-            // return <MovieList castIds ={"4"}/>; 
+            case 'upcoming': 
+            return <MovieList castIds ={"4"}/>; 
 
-            // case 'trending': 
-            // return <MovieList castIds ={"5"}/>; 
+            case 'trending': 
+            return <MovieList castIds ={"5"}/>; 
 
-            // case 'top_rated': 
-            // return <MovieList castIds ={"6"}/>;
+            case 'top_rated': 
+            return <MovieList castIds ={"6"}/>;
 
-            // case 'new_dvds': 
-            // return <MovieList castIds ={"7"}/>; 
+            case 'new_dvds': 
+            return <MovieList castIds ={"7"}/>; 
 
-            // case 'upcoming_dvds': 
-            // return <MovieList castIds ={"8"}/>;
+            case 'upcoming_dvds': 
+            return <MovieList castIds ={"8"}/>;
 
-            // case 'top_rental': 
-            // return <MovieList castIds ={"9"}/>; 
+            case 'top_rental': 
+            return <MovieList castIds ={"9"}/>; 
 
-            // case 'on_netflix': 
-            // return <MovieList castIds ={"10"}/>; 
+            case 'on_netflix': 
+            return <MovieList castIds ={"10"}/>; 
 
-            // case 'imdb_top_250': 
-            // return <MovieList castIds ={"11"}/>;
+            case 'imdb_top_250': 
+            return <MovieList castIds ={"11"}/>;
 
             default: 
             return null; 
