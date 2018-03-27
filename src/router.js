@@ -11,6 +11,9 @@ import CastDashboard from "../src/component/CastDashboard";
 import TabViewPeople from "../src/component/TabViewPeople";
 import InfoDetails from "../src/component/InfoDetails";
 import Splash from "../src/component/Splash";
+import ReviewDetail from "../src/component/ReviewDetail";
+import SimilarMovies from "../src/component/common/SimilarMovies"; 
+
 
 export default class RouterComponent extends Component {
   render() {
@@ -28,6 +31,9 @@ export default class RouterComponent extends Component {
 
           <Scene key="TabViewDetails" component={TabViewDetails} title="Tab View Details" />
           <Scene key="InfoDetails" component={InfoDetails} />
+          <Scene key="ReviewDetail" component={ReviewDetail} title="Review Details" />
+          <Scene key="similarMovie" component={SimilarMovies} title="Similar Movies" />
+          
         </Scene>
       </Router>;
   }

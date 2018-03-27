@@ -10,10 +10,13 @@ import {
     WebView,
     ScrollView,
     Linking,
-    ActivityIndicator
+    ActivityIndicator,
+    Dimensions,
+
   } from 'react-native';
   import { connect } from 'react-redux'
   import { bindActionCreators } from 'redux';
+  import {Actions} from 'react-native-router-flux';
 
   import ratingList from '../component/common/RateListJson';
   import SimilarMovies from '../component/common/SimilarMovies';
@@ -21,7 +24,9 @@ import {
   import { fetchMovieDetails } from '../actions/SimilarMoviesAction';
   import fetchVideoData from '../actions/VideoListAction';
 
+
   var url = "https://www.youtube.com/embed/";
+  const window = Dimensions.get("window");
   
   class InfoDetails extends Component {
       
@@ -215,9 +220,10 @@ import {
                                             source={{uri: url+item.key}}
                                         />
                                     
-                                        <Text style={{marginTop:10, 
+                                        <Text style={{ marginTop:10, 
                                             alignItems:'center',
-                                            justifyContent:'center'}}> {item.name} </Text>
+                                            justifyContent:'center',
+                                            width:(window.width/2)-2 }}> {item.name} </Text>
                                             </TouchableOpacity>
                                             
                             </View>
@@ -240,9 +246,12 @@ import {
                             More from Guillermo del Toro
                         </Text>
                         <View style={{flex:1, alignItems:'flex-end', justifyContent:'flex-end'}}>
+                        <TouchableOpacity  onPress={() => 
+                            Actions.similarMovie({similarMovieData : this.state.similarMoviesList})}>
                         <Text style={{ fontSize:16,margin:5, color:'green'}}>
                             View All
-                        </Text>
+                        </Text> 
+                        </TouchableOpacity>
                         </View>
                     </View>   
 
@@ -296,9 +305,12 @@ import {
                             similarMovie
                         </Text>
                         <View style={{flex:1, alignItems:'flex-end', justifyContent:'flex-end'}}>
+                        <TouchableOpacity  onPress={() => 
+                            Actions.similarMovie({similarMovieData : this.state.similarMoviesList})}>
                         <Text style={{ fontSize:16,margin:5, color:'green'}}>
                             View All
                         </Text>
+                        </TouchableOpacity>
                         </View>
                     </View> 
                     
