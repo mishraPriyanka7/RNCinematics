@@ -44,7 +44,7 @@ import {
                             data={ this.state.castList }
                             renderItem={({item}) => 
                             
-                            <TouchableOpacity  onPress={() => Actions.TabViewPeople({castId:item.id})}>
+                            <TouchableOpacity  onPress={() => Actions.CastDashboard({data:item})}>
                             <View>
                            
                             <View style = {{flex:1, flexDirection:'row', margin:10, paddingLeft:10,
