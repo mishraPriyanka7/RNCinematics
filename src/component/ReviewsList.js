@@ -7,8 +7,9 @@ import {
     Image,
     StyleSheet
   } from 'react-native';
+  import {Actions} from 'react-native-router-flux';
 
-//this dummy comment
+
   export default class ReviewsList extends Component {
 
     constructor(props){
@@ -22,7 +23,7 @@ import {
 
    componentDidMount() {
     
-    return fetch('https://api.themoviedb.org/3/movie/2/similar?api_key=1b31282aebdebc34884006adfac40bfb&language=en-US&page=1')
+    return fetch('https://api.themoviedb.org/3/movie/'+this.props.movieIds+'/reviews?api_key=1b31282aebdebc34884006adfac40bfb&language=en-US&page=1')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({
@@ -31,7 +32,7 @@ import {
           
 
         }, function() {
-          // In this block you can do something with new state.
+        
         });
        // alert(JSON.stringify(responseJson.results))
       })
@@ -49,6 +50,8 @@ import {
                             data={ this.state.reviewsList }
                             renderItem={({item}) => 
 
+                            // <TouchableOpacity  onPress={() => Actions.ReviewsDetails({reviewId:item.url})}>
+
                             <View style={{flex:1,  margin:5,}}>
                             <View style = {{flexDirection:'row'}}>
                                     <View style={{margin:5}}>
@@ -58,17 +61,18 @@ import {
                                     </View>
                                     
                                     <View style = {{justifyContent:'center',marginLeft:5}}>
-                                        <Text style={{fontSize:15,color:'black'}}>{item.title}</Text>
+                                        <Text style={{fontSize:15,color:'black'}}>{item.author}</Text>
                                     </View>
                             </View>
 
                             <View style = {{ justifyContent:'center', marginLeft:10}}>
-                                        <Text style={{fontSize:15}}>{item.overview}</Text>
+                                        <Text style={{fontSize:15}}>{item.content}</Text>
                                     </View>
                             
                             <View style={{flex:1,height:1, backgroundColor:'#dddcdc', marginTop:10}}></View>
                         
                         </View>
+                        // </TouchableOpacity>
 
                        
                             }
@@ -86,6 +90,7 @@ const Styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         justifyContent: 'center',
+        margin:10
         
     },
   });

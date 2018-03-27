@@ -4,9 +4,9 @@ export default function fetchMovieData(flag) {
 
     return (dispatch) => {
         dispatch(getLisData())
-        fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=1b31282aebdebc34884006adfac40bfb&language=en-US&page=1")
+        fetch("https://api.themoviedb.org/3/list/1?language=en-US&api_key=1b31282aebdebc34884006adfac40bfb")
         .then(res => res.json())
-        .then(json => dispatch(getListDataSuccess(json.results)))
+        .then(json => dispatch(getListDataSuccess(json.items)))
         .catch(err => dispatch(getListDataFailure(err)))
 
     }
